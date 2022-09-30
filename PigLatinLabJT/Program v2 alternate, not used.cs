@@ -16,39 +16,29 @@
                 }
                 else 
                 {
-                    string[] words = englishIn.Split(' ');
+                    string vowels = "aeiou";
+                    //string consonants = "bcdfghjklmnpqrstvwxyz";
+                    var piglatin = ""; //output after translation
 
-                    foreach(string words2 in words)
+                    foreach (var word in englishIn.Split()) //foreach loop to look at the user input (engword) and run each variable through it. Also .Split() separates the sentence 'engword' into individual words  by whitespace to be inspected.
                     {
-                        int vowelPosition = -1;
-                        foreach (char letter in words2)
-                        {
-                            vowelPosition++;
-                            if (letter == 'a' || letter == 'e' || letter == 'i' || letter == 'o' || letter == 'u');
-                            {
-                                break;
-                            }
-                        }
+                        var firstLetter = word.Substring(0, 1);
+                        var restOfWord = word.Substring(1, word.Length - 1);
+                        var currentLetter = vowels.IndexOf(firstLetter);
 
-                        string vowelSuffix = "-way";
-                        string ConstSuffix = "-ay";
-                        string beforeLetter = "";
-                        string afterLetter = "";
-
-                        if (vowelPosition == 0)
+                        if (currentLetter == -1)
                         {
-                            vowelSuffix = words2 + vowelSuffix;
-                                Console.WriteLine(vowelSuffix);
+                            piglatin += restOfWord + firstLetter + "-ay ";
                         }
+                     
                         else
                         {
-                            beforeLetter = words2.Substring(0, vowelPosition);
-                            afterLetter = words2.Substring(vowelPosition);
-                            string constword = afterLetter + beforeLetter + ConstSuffix;
-                            Console.WriteLine(constword);
+                            piglatin += word + "-way ";
                         }
-                    }          
+                    }
+                    Console.WriteLine(piglatin);
                 }
+
 
                 bool askAgain = true;//Loop to repeat restart/exit prompt
                 while (askAgain)
@@ -78,6 +68,8 @@
     }
 }
 
+//What are some of the c# string methods you used when doing the Capstone? 
+    //You can use string.split to take the whole sentence the user types in, and split them into individual components. I also used string.substring() to specify which index numbers of the string i wanted to use. For instance, looking at the second or third word of the sentence.  String.indexOf() was used to find if specific letters (the vowels in this case) occurred in each word. 
 
 //process breakdown-
 //split engsent into words
