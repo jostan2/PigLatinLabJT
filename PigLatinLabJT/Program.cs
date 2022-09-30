@@ -7,42 +7,41 @@
             bool Start = true; //Start of loop to restart program
             while (Start)
             {
-
                 Console.WriteLine("Welcome to the English-Pig Latin Translator. Please type any word.");
-                string engsent = Console.ReadLine().ToLower(); //converts user input to all lower-case
-                if (engsent.Length < 2)
+                string englishIn = Console.ReadLine().ToLower(); //converts user input to all lower-case
+                if (englishIn.Length < 2)
                 {
                     Console.WriteLine("This word is not long enough, try again.");
                     Start = true;
                 }
                 else 
                 {
-                    string vowels = "AEIOUaeio";
-                    var pigsent = ""; //out
-                    foreach (var word in engsent.Split()) //foreach loop to look at the user input (engword) and run each variable through it. Also .Split() separates the sentence 'engword' into individual words to be inspected.
+                    string vowels = "aeiou";
+                    //string consonants = "bcdfghjklmnpqrstvwxyz";
+                    var piglatin = ""; //output after translation
+
+                    foreach (var word in englishIn.Split()) //foreach loop to look at the user input (engword) and run each variable through it. Also .Split() separates the sentence 'engword' into individual words  by whitespace to be inspected.
                     {
                         var firstLetter = word.Substring(0, 1);
                         var restOfWord = word.Substring(1, word.Length - 1);
-                        var currentLetter = vowels.IndexOf(firstLetter, StringComparison.Ordinal);
+                        var currentLetter = vowels.IndexOf(firstLetter);
+                        //var currentLetter2 = consonants.IndexOf(firstLetter);
 
                         if (currentLetter == -1)
                         {
-                            pigsent += restOfWord + firstLetter + "ay ";
+                            piglatin += restOfWord + firstLetter + "-ay ";
                         }
+                        //else if (currentLetter2 == -1)
+                        //{
+                        //    piglatin += restOfWord + firstLetter + "ay";
+                        //}
                         else
                         {
-                            pigsent += word + "way ";
+                            piglatin += word + "-way ";
                         }
                     }
-                    Console.WriteLine(pigsent);
+                    Console.WriteLine(piglatin);
                 }
-
-
-                //- string starts with vowel, add '-way' to end ***
-
-                //- string starts with consonants (any letter not a vowel), move all of the consonants that appear before the first vowel to the end of the word, then add “ay” to the end of the word. 
-
-                //-extra, if 'userstr' has # (123) or symbols (!@#$), don't translate
 
                 bool askAgain = true;//Loop to repeat restart/exit prompt
                 while (askAgain)
