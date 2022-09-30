@@ -25,16 +25,12 @@
                         var firstLetter = word.Substring(0, 1);
                         var restOfWord = word.Substring(1, word.Length - 1);
                         var currentLetter = vowels.IndexOf(firstLetter);
-                        //var currentLetter2 = consonants.IndexOf(firstLetter);
 
                         if (currentLetter == -1)
                         {
                             piglatin += restOfWord + firstLetter + "-ay ";
                         }
-                        //else if (currentLetter2 == -1)
-                        //{
-                        //    piglatin += restOfWord + firstLetter + "ay";
-                        //}
+                     
                         else
                         {
                             piglatin += word + "-way ";
@@ -42,6 +38,7 @@
                     }
                     Console.WriteLine(piglatin);
                 }
+
 
                 bool askAgain = true;//Loop to repeat restart/exit prompt
                 while (askAgain)
